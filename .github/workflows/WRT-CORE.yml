@@ -1,15 +1,3 @@
-问题找到了！你发给我的是 `WRT-CORE.yml` 的内容，但实际上这是 `QCA-ALL.yml` 的内容。说明你之前编辑时**把 `QCA-ALL.yml` 的内容误保存到了 `WRT-CORE.yml`** 里，把原来的内容覆盖掉了。
-
-需要恢复 `WRT-CORE.yml`：
-
-1. 进入你的仓库
-2. 点 `.github/workflows/WRT-CORE.yml`
-3. 点铅笔图标编辑
-4. 把内容**全部替换**成你之前发给我的原始内容（就是那个很长的包含 `on: workflow_call` 的文件）
-
-我把正确内容给你，直接复制进去：
-
-```yaml
 # SPDX-License-Identifier: MIT
 # Copyright (C) 2026 VIKINGYFY
 
@@ -264,6 +252,3 @@ jobs:
 
             内核版本：${{env.WRT_KVER}}
             插件列表：${{env.WRT_LIST}}
-```
-
-保存后再去触发测试编译。
