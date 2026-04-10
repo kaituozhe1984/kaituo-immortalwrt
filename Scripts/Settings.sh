@@ -6,8 +6,13 @@
 sed -i "/attendedsysupgrade/d" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 
 # 2. 核心修复：切断原仓库对 aurora 主题的强依赖，强制改回官方的 bootstrap
-sed -i "s/luci-theme-aurora/luci-theme-bootstrap/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
-sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+#sed -i "s/luci-theme-aurora/luci-theme-bootstrap/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+#sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+# 2. 核心修复：全局切断原仓库对 aurora 主题的强依赖，强制改回官方的 bootstrap
+find ./feeds/ ./package/ -type f -name "Makefile" -exec sed -i "s/luci-theme-aurora/luci-theme-bootstrap/g" {} +
+find ./feeds/ ./package/ -type f -name "Makefile" -exec sed -i "s/luci-app-aurora-config//g" {} +
+
+
 
 # 3. 修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
