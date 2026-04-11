@@ -66,6 +66,7 @@ jobs:
       #WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_PACKAGE: |
+        # --- 1. 彻底屏蔽原作者的臃肿私货和流氓主题 ---
         CONFIG_PACKAGE_luci-theme-bootstrap=y
         CONFIG_PACKAGE_luci-app-aurora-config=n
         CONFIG_PACKAGE_luci-theme-aurora=n
@@ -81,5 +82,17 @@ jobs:
         CONFIG_PACKAGE_luci-app-tailscale=n
         CONFIG_PACKAGE_luci-app-wolplus=n
         CONFIG_PACKAGE_luci-app-gecoosac=n
+
+        # --- 2. HA 脚本刚需的底层网络工具 (无缝运行的核心) ---
+        CONFIG_PACKAGE_bash=y
+        CONFIG_PACKAGE_curl=y
+        CONFIG_PACKAGE_netcat=y
+        CONFIG_PACKAGE_conntrack=y
+        CONFIG_PACKAGE_ip-full=y
+        
+        # --- 3. 恢复你旧固件的常用后台功能插件 ---
+        CONFIG_PACKAGE_luci-app-smartdns=y
+        CONFIG_PACKAGE_luci-app-ddns-go=y
+        CONFIG_PACKAGE_luci-app-wol=y
         ${{inputs.PACKAGE}}
       WRT_TEST: ${{inputs.TEST}}
