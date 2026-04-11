@@ -4,10 +4,10 @@
 name: Auto-Clean
 
 on:
-  #自动清理：每天早上6点
+  # 自动清理：每天早上6点 (UTC时间 22:00)
   schedule:
     - cron: 0 22 * * *
-  #手动清理
+  # 手动清理
   workflow_dispatch:
 
 permissions: write-all
@@ -21,7 +21,7 @@ jobs:
         with:
           gh_token: ${{secrets.GITHUB_TOKEN}}
           delete_releases: true
-          releases_keep_latest: 0
+          releases_keep_latest: 3      # 修改这里：保留最新的 3 个 Release（即最近的3次固件）
           delete_tags: true
           delete_workflows: true
-          workflows_keep_day: 0
+          workflows_keep_day: 3        # 修改这里：保留最近 3 天的 Actions 运行日志记录
